@@ -2,18 +2,17 @@ var express = require('express'); //import express library
 var app = express();
 var bodyParser = require('body-parser'); //
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
+//var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
+var db = mongoose.connect(
+	'mongodb+srv://<user>:<password>@cluster0-9yquw.mongodb.net/test?retryWrites=true&w=majority',
+	{
+		useNewUrlParser : true,
+		dbName          : 'react-shop'
+	}
+);
 
 var Product = require('./model/product');
 var WishList = require('./model/wishlist');
-
-//Google Cloud Firestore server client library
-const Firestore = require('@google-cloud/firestore');
-
-const fsdb = new Firestore({
-	projectId   : 'react-shop-api',
-	keyFilename : './react-shop-api-141bcc2fc161.json'
-});
 
 //Allow all requests from all domains & localhost
 app.all('/*', function(req, res, next) {
@@ -44,22 +43,6 @@ app.post('/product', function(req, res) {
 
 //retrieves product list
 app.get('/product', function(req, res) {
-	/*	var productList = [];
-	var productsRef = fsdb.collection('products');
-	var promise = productsRef
-		.get()
-		.then((snapshot) => {
-			snapshot.forEach((doc) => {
-				productList.push(doc.data());
-				console.log(doc.id, '=>', doc.data());
-			});
-		})
-		.catch((err) => {
-			console.log('Error getting documents', err);
-			res.status(500).send({ error: 'Could not fetch products' });
-		});
-	res.send(productList);*/
-
 	Product.find({}, function(err, products) {
 		//async function, .find() always returns an array.
 		if (err) {
