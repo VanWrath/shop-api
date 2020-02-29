@@ -15,7 +15,7 @@ const fsdb = new Firestore({
 	keyFilename : './react-shop-api-141bcc2fc161.json'
 });
 
-//Allow all requests from all domains & localhost
+//Allow all requests from all domains & localhosts
 app.all('/*', function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept');
@@ -33,7 +33,7 @@ app.post('/product', function(req, res) {
 	product.title = req.body.title;
 	product.price = req.body.price;
 	product.save(function(err, savedProduct) {
-		//stores the data in product collection
+		//stores the data in product collections
 		if (err) {
 			res.status(500).send({ error: 'Could not save product' });
 		} else {
