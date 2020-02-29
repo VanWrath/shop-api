@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "react-shop-api",
+  "private_key_id": "141bcc2fc161d0c96490cc8580cdea679ea908cf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC96Z0CukEz03QW\nWLsYNQA/J19vCsXiQ1TZRY8eKGaqrNNlzwvjfYnXm5B3DSKrDG/u/mVo+kyOv7C5\n8aFZ34iwrmj0kIZ5OMPLXRYwOqTFUOZUL9z9Qx6q7gqmVFD+SdD0pZqDvqfH1LqK\nQHBdOSTdi8PYCLIPP7BBietJAphvXfGEDRpTXpIkQNKgQLUOhRtCGdOTo4BYB6xQ\nt8P7sCbW5T9jTy9/cDrDkpofZRX99lOspE8Ljib5tAT9171A8zL4dDYqIQPLg9BK\njnhmDi3o6YBFPuawMeAg+97jz2LAnhghd27AFYHx1bNau+9Qur0bcXA/H4S2pklr\n9w013FN1AgMBAAECggEAGNFBwaS91wwzsCTlxC7O6rHWPJBTljMW0DLRFk+QxQ6D\nLJt/MfoKjJipawlWJbShHwHzFiIZZZEiwtXS8EfwGKieEhGd5RL4MSfnuaM8O4XM\nJ6W+kwEVraAgV6aOlABo9EN82ukMC2be/qiXlnMcgHAehmlyfWAlBBeGHfsfGPRb\nnmtzk3j/1TBJKVwHxGb/gTBboEnRrPYr3hDJutVR/Xx7G+0m7tQ4r337CGCpCp8K\nXbKI09y4kuiaKTEJ1KpCsWTqx28rmw7w6zVI5SEIhAp+5bcIImfmuCAnGylNjAXL\nk3tVmLJZ/8RbNeDTOF5tOTAgoIbJS7/MQ0EYtJqd+QKBgQD10qVYHxtOcsHm46iE\n98UZ7iDiWwCXPf2osGjWv25ARE7+ckqfconKYrJ2bml3fSv6/hKaqF0+RZzrJJJa\nsosbOu5UBGex3PVw0TrzUGcN5VdVgNqdNUXnt9W8E23jKBapb3HqgWUxM/g5SbaF\nydvGLVYCVuZCgCDOSYJpzlPmaQKBgQDFxmbxtjjeMMGTi1tr9NwfAUBSW3/L3eER\nUSaDAvfudHEnvPI2oUNTtp9VXjykvAxa6qtdrLsMRU5rw/9ED4dPtyNHyoLJ9m5j\nts6xaLlY4XTrfNNefQkYmIf42gI6MzGDYxpIEIHykHbG7vdJEteIoj8YfKsfFtNw\nLX9RfNnbLQKBgAGz8d1IaeIDPYCh9xrktILXeXbX9osVrNosTq2eKd9cGcf9drLg\nEkBKqr3TSfu/7DwS4oIbxHmX9dxTJohmUDxiDiCa3zUGONUNPgFNf0lDW3WGLP2F\nzvQp+9sPr2Uxc+a8lOdw+gh7Oa776b3HhjQ7QCtH+tRfGtsS+0pMWZxxAoGAP6dU\nmLUiZnjgxMEUgpGDi0MW1ar3XcEi4DTzJTV+YLP/e1+3wVdz2OytKYe0Ev0nKNfg\nobynUxK3Y73oWZp53XE/HKsUHzZ+Xv+GVNk01mNyAxzg1sd9dvoYwUJBd0PkyrnJ\nyqnteQmAARUGZ/F1h1dY4WO2m8H3+WHbWXnKkF0CgYEAn9dzOc4CkqG6yEpIgKus\nmYjMwS52ZXJpVrdzZgFjQoYkZSXblKRaT/7oHzoOaUUUGbG9mUXYk1dIo3gtYCXg\nhuJmRS4ud2SgP6/kaH8ZwwgJOhntHbHXGmNDqFhDxWubsCdeIhflKMcZPlyqAHRg\n1FZzLJ1/1wGGaPnnWegkaAQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "shop-api-admin@react-shop-api.iam.gserviceaccount.com",
+  "client_id": "104442151565124976103",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/shop-api-admin%40react-shop-api.iam.gserviceaccount.com"
+}
