@@ -8,12 +8,23 @@ var Product = require('./model/product');
 var WishList = require('./model/wishlist');
 
 //Google Cloud Firestore server client library
-const Firestore = require('@google-cloud/firestore');
+const firebase = require('firebase');
+require('firebase/firestore');
 
+firebase.initializeApp({
+	apiKey     : '',
+	authDomain : '',
+	projectId  : 'react-shop-api'
+});
+
+var fsdb = firebase.firestore();
+
+/*
 const fsdb = new Firestore({
 	projectId   : 'react-shop-api',
 	keyFilename : './react-shop-api-141bcc2fc161.json'
 });
+*/
 
 //Allow all requests from all domains & localhosts
 app.all('/*', function(req, res, next) {
