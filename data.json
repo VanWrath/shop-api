@@ -11,3 +11,10 @@ db.products.insert({"price":99.99,"title":"Thanos Infinity Gauntlet","imgUrl":"h
 
 
 db.products.insert({"price":0.00,"title":"","imgUrl":""})
+
+{
+    "price": 399.99,
+    "title": "PlayStation 4",
+    "imgUrl": "https://media.gamestop.com/i/gamestop/10114375/PlayStation-4-Black-500GB?$pdp$",
+    "description": "The PlayStation(R)4 system opens the door to an incredible journey through immersive new gaming worlds and a deeply connected gaming community. With an astounding launch lineup and over 180 games in development the PS4 system offers more top-tier blockbusters and inventive indie hits than any other next-gen console. Developer Inspired, Gamer Focus. PlayStation 4. Greatness Awaits"
+}
