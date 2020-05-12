@@ -7,9 +7,9 @@ const user = new Schema({
 	name     : String,
 	address  : String,
 	phone    : String,
-	produts  : [ { type: ObjectId, ref: 'Product' } ],
-	wishlist : [ { type: ObjectId, ref: 'Product' } ],
-	cart     : [ { type: ObjectId, ref: 'Product' } ]
+	wishlist : [ { type: ObjectId, ref: 'WishList' } ],
+	cart     : [ { type: ObjectId, ref: 'Product' } ],
+	orders   : [ { type: ObjectId, ref: 'Order' } ]
 });
 
 module.exports = mongoose.model('User', user);

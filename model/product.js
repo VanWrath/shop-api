@@ -3,6 +3,7 @@ var Schema = mongoose.Schema; //creates the scheme behind your data
 
 var product = new Schema({
 	title       : String,
+	brand       : String,
 	price       : Number,
 	imgUrl      : String,
 	description : String,

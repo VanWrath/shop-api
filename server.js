@@ -87,10 +87,13 @@ app.post('/wishlist', function(req, res) {
 	});
 });
 
+//adds new user
 app.post('/user', (req, res) => {
 	const user = new User();
 	user.email = req.body.email;
 	user.name = req.body.name;
+	const wishlist = new WishList();
+	user.wishlist.push(wishlist);
 
 	user.save((err, newUser) => {
 		if (err) {
@@ -103,6 +106,7 @@ app.post('/user', (req, res) => {
 
 /*GET operations*/
 
+//test
 // Define an endpoint that must be called with an access token
 app.get('/api/external', checkJwt, (req, res) => {
 	res.send({
@@ -122,7 +126,21 @@ app.get('/product', function(req, res) {
 	});
 });
 
-//returns data to a wishlist
+//endpoint that retrieves product list
+app.get('/search', function(req, res) {
+	var search = req.body.text;
+	Product.find({ title: { $regex: search, $options: 'i' } }, (err, products) => {
+		//async function, .find() always returns an array.
+		if (err) {
+			res.status(500).send({ error: 'Could not fetch products' + err });
+		} else {
+			res.send(products);
+		}
+	});
+});
+
+//depreiated
+//returns data of a wishlist
 app.get('/wishlist', function(req, res) {
 	WishList.find({}).populate({ path: 'products', model: 'Product' }).exec(function(err, wishLists) {
 		//populates the list with actual data instead of just an id.
@@ -133,6 +151,7 @@ app.get('/wishlist', function(req, res) {
 	});
 });
 
+//returns a user
 app.get('/user', (req, res) => {
 	User.findOne({ _id: req.body._id }, (err, user) => {
 		if (err) {
@@ -142,10 +161,12 @@ app.get('/user', (req, res) => {
 		}
 	});
 });
+
 /*PUT operations*/
 
+//updates prooduct
 app.put('/product', (req, res) => {
-	Product.updateOne({ _id: req.body._id }, (err, res) => {
+	Product.updateOne({ _id: req.body._id }, req.body, (err, result) => {
 		if (err) {
 			res.status(500).send({ error: 'Could not update item' });
 		} else {
@@ -154,9 +175,32 @@ app.put('/product', (req, res) => {
 	});
 });
 
+//updates user
+app.put('/user', (req, res) => {
+	User.updateOne({ _id: req.body._id }, req.body, (err, result) => {
+		if (err) {
+			res.status(500).send({ error: 'Could not update item' });
+		} else {
+			res.send('Successfully updated item');
+		}
+	});
+});
+
+//new:
+//adds item to wishlist
+app.put('/wishlist/product/add', (req, res) => {
+	User.updateOne({ _id: req.body._id }, { $addToSet: { wishlist: req.body.wishlist } }, (err, result) => {
+		if (err) {
+			res.status(500).send({ error: 'Could not add product to wishlist' });
+		} else {
+			res.send('Successfully added to wishlist');
+		}
+	});
+});
+
 //adds items to wishlist
 app.put('/wishlist/product/add', function(req, res) {
-	Product.findOne({ _id: req.body.productId }, function(err, product) {
+	Product.findOne({ _id: req.body.productId }, (err, product) => {
 		if (err) {
 			res.status(500).send({ error: 'Could not add product to wishlist' });
 		} else {
@@ -187,6 +231,18 @@ app.delete('/product', (req, res) => {
 	});
 });
 
+//delete a user
+app.delete('/user', (req, res) => {
+	User.deleteOne({ _id: req.body._id }, (err) => {
+		if (err) {
+			res.status(500).send({ error: 'could not delete user' });
+		} else {
+			res.send('Sucessfully deleted user.');
+		}
+	});
+});
+
+//depreciated
 //deletes a list from wishlists
 app.delete('/wishlist', (req, res) => {
 	WishList.deleteOne({ _id: req.body._id }, (err) => {
