@@ -14,7 +14,7 @@ test('get list of products', (done) => {
 	});
 });
 
-test('get user', (done) => {
+test('get user by id', (done) => {
 	console.log('test 2');
 	var data = {
 		_id : '5e6b3541fdc5ca3c50dde6d4'
@@ -26,8 +26,20 @@ test('get user', (done) => {
 	});
 });
 
+test('get user by email', (done) => {
+	console.log('test 3');
+	var data = {
+		email : 'kai710@live.com'
+	};
+	request.get({ url: 'http://localhost:3003/user', form: data }, (err, res) => {
+		console.log(res.body);
+		expect(res.statusCode).toEqual(200);
+		done();
+	});
+});
+
 // test('create a new product', (done) => {
-// 	console.log('test 3');
+// 	console.log('test 4');
 // 	const data = {
 // 		title       : 'FINAL FANTASY® VII REMAKE',
 // 		price       : 59.99,
@@ -51,7 +63,7 @@ test('get user', (done) => {
 // });
 
 // test('delete products', (done) => {
-// 	console.log('test 4');
+// 	console.log('test 5');
 // 	const data = {
 // 		_id : '5eba49a0afb1421c5c3ba94a'
 // 	};
@@ -68,7 +80,7 @@ test('get user', (done) => {
 // });
 
 test('search product', (done) => {
-	console.log('test 5');
+	console.log('test 6');
 	var data = {
 		text : 'final'
 	};
@@ -80,7 +92,7 @@ test('search product', (done) => {
 });
 
 test('update product', (done) => {
-	console.log('test 6');
+	console.log('test 7');
 	var data = {
 		_id         : '5eba48d3afb1421c5c3ba946',
 		title       : 'FINAL FANTASY® VII REMAKE',
@@ -104,7 +116,7 @@ test('update product', (done) => {
 });
 
 test('update user', (done) => {
-	console.log('test 7');
+	console.log('test 8');
 	var data = {
 		_id      : '5e6b3541fdc5ca3c50dde6d4',
 		products : [],
@@ -127,7 +139,7 @@ test('update user', (done) => {
 });
 
 // test('create new user', (done) => {
-// 	console.log('test 8');
+// 	console.log('test 9');
 // 	const data = {
 // 		name  : 'David Lee',
 // 		email : 'david_lee@hotmail.com'
@@ -145,9 +157,9 @@ test('update user', (done) => {
 // });
 
 // test('delete user', (done) => {
-// 	console.log('test 9');
+// 	console.log('test 10');
 // 	const data = {
-// 		_id   : '5eba5e7b6cf0613ba4fc7b',
+// 		_id   : '5edeba6cc1153a33d0e5d292',
 // 		name  : 'David Lee',
 // 		email : 'david_lee@hotmail.com'
 // 	};

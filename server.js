@@ -126,7 +126,7 @@ app.get('/product', function(req, res) {
 	});
 });
 
-//endpoint that retrieves product list
+//endpoint that retrieves filtered product list
 app.get('/search', function(req, res) {
 	var search = req.body.text;
 	Product.find({ title: { $regex: search, $options: 'i' } }, (err, products) => {
@@ -151,9 +151,9 @@ app.get('/wishlist', function(req, res) {
 	});
 });
 
-//returns a user
+//returns a user by id or email
 app.get('/user', (req, res) => {
-	User.findOne({ _id: req.body._id }, (err, user) => {
+	User.findOne({ $or: [ { _id: req.body._id }, { email: req.body.email } ] }, (err, user) => {
 		if (err) {
 			res.status(500).send({ error: 'Could not find user' });
 		} else {
