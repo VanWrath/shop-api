@@ -4,6 +4,8 @@ const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 const bodyParser = require('body-parser'); //
 const mongoose = require('mongoose');
+const requester = require('request');
+
 //var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
 const db = mongoose.connect(
 	'mongodb+srv://kyle:Fantasy710@cluster0-9yquw.mongodb.net/test?retryWrites=true&w=majority',
@@ -15,6 +17,7 @@ const db = mongoose.connect(
 var Product = require('./model/product');
 var WishList = require('./model/wishlist');
 const User = require('./model/user');
+const { request } = require('express');
 
 const app = express();
 
@@ -176,13 +179,32 @@ app.put('/product', (req, res) => {
 });
 
 //updates user
+// app.put('/user', (req, res) => {
+// 	User.updateOne({ _id: req.body._id }, req.body, (err, result) => {
+// 		if (err) {
+// 			res.status(500).send({ error: 'Could not update item' });
+// 		} else {
+// 			res.send('Successfully updated item');
+// 		}
+// 	});
+// });
+
 app.put('/user', (req, res) => {
-	User.updateOne({ _id: req.body._id }, req.body, (err, result) => {
-		if (err) {
-			res.status(500).send({ error: 'Could not update item' });
-		} else {
-			res.send('Successfully updated item');
-		}
+	var metadata = req.body.metadata;
+	var uid = req.body.uid;
+	var token = req.body.token;
+	var options = {
+		method  : 'PATCH',
+		url     : 'https://dev-e4xqtzrx.auth0.com/api/v2/users/' + uid,
+		headers : { Authorization: 'Bearer ' + token, 'content-type': 'applicaiton/json' },
+		body    : { user_metadata: metadata },
+		json    : true
+	};
+
+	requester(options, (error, res, body) => {
+		if (error) throw new Error(error);
+
+		console.log(body);
 	});
 });
 
