@@ -32,10 +32,10 @@ app.all('/*', function(req, res, next) {
 	next();
 });
 
-//Set up Auth0 configuratioon
+//Set up Auth0 configuration
 const authConfig = {
 	domain   : 'dev-e4xqtzrx.auth0.com',
-	audience : 'https://api.kylevannarath.ca'
+	audience : 'https://dev-e4xqtzrx.auth0.com/api/v2/'
 };
 
 // Define middleware that validates incoming bearer tokens using JWKS
@@ -192,7 +192,7 @@ app.put('/product', (req, res) => {
 app.put('/user', (req, res) => {
 	var metadata = req.body.metadata;
 	var uid = req.body.uid;
-	var token = req.body.token;
+	const token = req.body.token;
 	var options = {
 		method  : 'PATCH',
 		url     : 'https://dev-e4xqtzrx.auth0.com/api/v2/users/' + uid,

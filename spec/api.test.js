@@ -175,3 +175,8 @@ test('update user', (done) => {
 // 		done();
 // 	});
 // });
+
+/* test updating user metadata */
+test('update metadata', (done) => {
+	console.log('test 11');
+});
