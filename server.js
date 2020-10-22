@@ -5,10 +5,13 @@ const jwksRsa = require('jwks-rsa');
 const bodyParser = require('body-parser'); //
 const mongoose = require('mongoose');
 const requester = require('request');
+const config = require('./config');
+
+
 
 //var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
 const db = mongoose.connect(
-	'mongodb+srv://kyle:Fantasy710@cluster0-9yquw.mongodb.net/test?retryWrites=true&w=majority',
+	config.dbUrl,
 	{
 		useNewUrlParser : true,
 		dbName          : 'react-shop'
