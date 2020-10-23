@@ -5,27 +5,33 @@ const jwksRsa = require('jwks-rsa');
 const bodyParser = require('body-parser'); //
 const mongoose = require('mongoose');
 const requester = require('request');
-const config = require('./config');
+const authConfig = require("./authConfig.json");
 
-
-
-//var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
-const db = mongoose.connect(
-	config.dbUrl,
-	{
-		useNewUrlParser : true,
-		dbName          : 'react-shop'
-	}
-);
 var Product = require('./model/product');
 var WishList = require('./model/wishlist');
 const User = require('./model/user');
 const { request } = require('express');
 
+if (!authConfig.domain || !authConfig.audience) {
+	throw new Error(
+	  "Please make sure that auth_config.json is in place and populated"
+	);
+  }
+
+//var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
+const db = mongoose.connect(
+	authConfig.dbUrl,
+	{
+		useNewUrlParser : true,
+		dbName          : 'react-shop'
+	}
+);
+
+
 const app = express();
 
 // Accept cross-origin requests from the frontend app
-app.use(cors({ origin: 'http://localhost:3001' }));
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 //Allow all requests from all domains & localhost
 app.all('/*', function(req, res, next) {
@@ -36,10 +42,10 @@ app.all('/*', function(req, res, next) {
 });
 
 //Set up Auth0 configuration
-const authConfig = {
-	domain   : 'dev-e4xqtzrx.auth0.com',
-	audience : 'https://dev-e4xqtzrx.auth0.com/api/v2/'
-};
+// const authConfig = {
+// 	domain   : 'dev-e4xqtzrx.auth0.com',
+// 	audience : 'https://dev-e4xqtzrx.auth0.com/api/v2/'
+// };
 
 // Define middleware that validates incoming bearer tokens using JWKS
 const checkJwt = jwt({
@@ -52,7 +58,7 @@ const checkJwt = jwt({
 
 	audience  : authConfig.audience,
 	issuer    : `https://${authConfig.domain}/`,
-	algorithm : [ 'RS256' ]
+	algorithms : [ 'RS256' ]
 });
 
 //allow express to use the bodyParser middleware
@@ -103,7 +109,7 @@ app.post('/user', (req, res) => {
 
 	user.save((err, newUser) => {
 		if (err) {
-			res.status(500).send({ error: 'could not addd user' });
+			res.status(500).send({ error: 'could not add user' });
 		} else {
 			res.status(200).send(newUser);
 		}
