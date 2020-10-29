@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 const requester = require('request');
 const authConfig = require("./authConfig.json");
 
+const morgan = require("morgan");
+const helmet = require("helmet");
+
 var Product = require('./model/product');
 var WishList = require('./model/wishlist');
 const User = require('./model/user');
@@ -30,8 +33,10 @@ const db = mongoose.connect(
 
 const app = express();
 
+app.use(morgan("dev"));
+app.use(helmet());
 // Accept cross-origin requests from the frontend app
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: 'http://localhost:3001' }));
 
 //Allow all requests from all domains & localhost
 app.all('/*', function(req, res, next) {
@@ -47,6 +52,11 @@ app.all('/*', function(req, res, next) {
 // 	audience : 'https://dev-e4xqtzrx.auth0.com/api/v2/'
 // };
 
+
+//allow express to use the bodyParser middleware
+app.use(bodyParser.json()); //converts requests to json
+app.use(bodyParser.urlencoded({ extended: false })); //only work with data that is properly formatted
+
 // Define middleware that validates incoming bearer tokens using JWKS
 const checkJwt = jwt({
 	secret    : jwksRsa.expressJwtSecret({
@@ -60,10 +70,6 @@ const checkJwt = jwt({
 	issuer    : `https://${authConfig.domain}/`,
 	algorithms : [ 'RS256' ]
 });
-
-//allow express to use the bodyParser middleware
-app.use(bodyParser.json()); //converts requests to json
-app.use(bodyParser.urlencoded({ extended: false })); //only work with data that is properly formatted
 
 /*POST operations*/
 
