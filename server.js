@@ -4,6 +4,8 @@ const bodyParser = require('body-parser'); //
 const mongoose = require('mongoose');
 const config = require("./authConfig.json");
 
+const PORT = process.env.PORT || 5000
+
 //var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
 var db = mongoose.connect(
 	config.dbUrl,
@@ -100,6 +102,6 @@ app.put('/wishlist/product/add', function(req, res) {
 	});
 });
 
-app.listen(5000, () => {
-	console.log('Hobby shop running on port 5000...');
+app.listen(PORT, () => {
+	console.log(`Hobby shop running on port ${PORT}...`);
 });
