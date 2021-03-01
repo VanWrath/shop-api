@@ -1,8 +1,8 @@
-var express = require('express'); //import express library
-var app = express();
-var bodyParser = require('body-parser'); //
-var mongoose = require('mongoose');
-var config = require("./authConfig.json");
+const express = require('express'); //import express library
+const app = express();
+const bodyParser = require('body-parser'); //
+const mongoose = require('mongoose');
+const config = require("./authConfig.json");
 
 //var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
 var db = mongoose.connect(
@@ -100,6 +100,6 @@ app.put('/wishlist/product/add', function(req, res) {
 	});
 });
 
-app.listen(3003, function() {
-	console.log('Swag shop running on port 3003...');
+app.listen(5000, () => {
+	console.log('Hobby shop running on port 5000...');
 });
