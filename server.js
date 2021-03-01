@@ -2,9 +2,11 @@ var express = require('express'); //import express library
 var app = express();
 var bodyParser = require('body-parser'); //
 var mongoose = require('mongoose');
+var config = require("./authConfig.json");
+
 //var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
 var db = mongoose.connect(
-	'mongodb+srv://<user>:<password>@cluster0-9yquw.mongodb.net/test?retryWrites=true&w=majority',
+	config.dbUrl,
 	{
 		useNewUrlParser : true,
 		dbName          : 'react-shop'
