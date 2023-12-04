@@ -11,7 +11,7 @@ var db = mongoose.connect(
 	config.dbUrl,
 	{
 		useNewUrlParser : true,
-		dbName          : 'react-shop'
+		dbName          : 'Shop'
 	}
 );
 
@@ -52,6 +52,7 @@ app.get('/product', function(req, res) {
 		if (err) {
 			res.status(500).send({ error: 'Could not fetch products' });
 		} else {
+			console.log('Products retrieved');
 			res.send(products);
 		}
 	});
