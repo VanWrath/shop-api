@@ -1,14 +1,16 @@
 const express = require('express'); //import express library
 const app = express();
+const dotenv = require('dotenv').config();
 const bodyParser = require('body-parser'); //
 const mongoose = require('mongoose');
-const config = require("./authConfig.json");
+//const config = require("./authConfig.json");
 
 const PORT = process.env.PORT || 5000
-
+console.log(process.env);
 //var db = mongoose.connect('mongodb://localhost:/shop', { useNewUrlParser: true });
 var db = mongoose.connect(
-	config.dbUrl,
+	//config.dbUrl,
+	process.env.DBURL,
 	{
 		useNewUrlParser : true,
 		dbName          : 'Shop'
